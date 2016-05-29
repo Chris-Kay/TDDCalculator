@@ -28,3 +28,12 @@ describe("Multiple deliminators", function () {
     expect(main.add(number)).toBe(3);
   });
 });
+
+describe("negative numbers throw errors", function () {
+  it("throws an error if a negative number is passed in", function () {
+    var number = '1,-2';
+    expect(function() {
+      main.add(number)
+    }).toThrow(new Error('Negative numbers not allowed'));
+  });
+});

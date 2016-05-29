@@ -13,8 +13,15 @@ function add(numberString) {
     numberArray =  numberString.split(/\n|\,/);
   }
 
-  for(var i = 0; i < numberArray.length; i ++) {
-    sum += parseInt(numberArray[i]);
+  try {
+    for(var i = 0; i < numberArray.length; i ++) {
+      if(numberArray[i] < 0) {
+        throw new Error('Negative numbers not allowed');
+      }
+      sum += parseInt(numberArray[i]);
+    }
+  } catch (err)  {
+      throw Error(err.message);
   }
 
   return sum;
