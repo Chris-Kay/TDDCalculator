@@ -1,15 +1,15 @@
 function add(numberString) {
-  var sum = 0,
-  seperator = [',', '\n']
+  var sum = 0;
+  var number = 0;
   if(numberString === '') {
     return sum;
   }
 
+  numberArray =  numberString.split(/\n|\,/);
 
-  var numbers = numberString.split(new RegExp(seperator.join('|'), 'g'));
-    numbers.forEach(function(number) {
-      sum += parseInt(number);
-    });
+  for(var i = 0; i < numberArray.length; i ++) {
+    sum += parseInt(numberArray[i]);
+  }
 
   return sum;
 }

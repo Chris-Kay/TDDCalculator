@@ -11,13 +11,13 @@ describe("description", function () {
     expect(main.add(number1)).toBe(1);
   });
 
-  it("it handles an a multiple numbers", function () {
-    var multipleNumbers = '1,2';
-    expect(main.add(multipleNumbers)).toBe(3);
+  it("it handles an a single number", function () {
+    var number = '1,2';
+    expect(main.add(number)).toBe(3);
   });
 
-  it("it handles an new line in numbers", function () {
-    var numberWithNewLine = '1\n2,3';
-    expect(main.add(numberWithNewLine)).toBe(6);
+  it("it handles an a single number", function () {
+    var number = '1\n2';
+    expect(main.add(number)).toBe(3);
   });
 });
