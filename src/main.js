@@ -5,13 +5,23 @@ function add(numberString) {
     return sum;
   }
 
-  numberArray =  numberString.split(/\n|\,/);
+  if(hasCustomDeliminator(numberString)) {
+    var deliminator = (numberString.charAt(2));
+    var numbers = numberString.split(/\n/)[1];
+    numberArray = numbers.split(deliminator);
+  } else {
+    numberArray =  numberString.split(/\n|\,/);
+  }
 
   for(var i = 0; i < numberArray.length; i ++) {
     sum += parseInt(numberArray[i]);
   }
 
   return sum;
+}
+
+function hasCustomDeliminator(numberString) {
+    return numberString.match(/^\/\//);
 }
 
 module.exports = {

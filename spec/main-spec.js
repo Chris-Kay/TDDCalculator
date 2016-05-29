@@ -21,3 +21,10 @@ describe("description", function () {
     expect(main.add(number)).toBe(3);
   });
 });
+
+describe("Multiple deliminators", function () {
+  it("should support multiple deliminators", function () {
+    var number = '//;\n1;2';
+    expect(main.add(number)).toBe(3);
+  });
+});
