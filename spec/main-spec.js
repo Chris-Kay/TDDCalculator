@@ -30,10 +30,24 @@ describe("Multiple deliminators", function () {
 });
 
 describe("negative numbers throw errors", function () {
-  it("throws an error if a negative number is passed in", function () {
+  it("throws an error if a negative number is passed in with normal deliminator", function () {
     var number = '1,-2';
     expect(function() {
       main.add(number)
-    }).toThrow(new Error('Negative numbers not allowed'));
+    }).toThrow(new Error('Negative numbers not allowed: -2'));
+  });
+
+  it("throws an error if multiple negative numbers is passed in with normal deliminator", function () {
+    var number = '1,-2,-3';
+    expect(function() {
+      main.add(number)
+    }).toThrow(new Error('Negative numbers not allowed: -2,-3'));
+  });
+
+  it("throws an error if a negative number is passed in with custom deliminator", function () {
+    var number = '//;\n1;-2';
+    expect(function() {
+      main.add(number)
+    }).toThrow(new Error('Negative numbers not allowed: -2'));
   });
 });

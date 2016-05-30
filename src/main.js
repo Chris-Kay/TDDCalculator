@@ -1,6 +1,8 @@
 function add(numberString) {
   var sum = 0;
   var number = 0;
+  var negativeNumbers = [];
+
   if(numberString === '') {
     return sum;
   }
@@ -13,15 +15,16 @@ function add(numberString) {
     numberArray =  numberString.split(/\n|\,/);
   }
 
-  try {
-    for(var i = 0; i < numberArray.length; i ++) {
-      if(numberArray[i] < 0) {
-        throw new Error('Negative numbers not allowed');
-      }
-      sum += parseInt(numberArray[i]);
+  for(var i = 0; i < numberArray.length; i ++) {
+    if(numberArray[i] < 0) {
+      negativeNumbers.push(numberArray[i]);
     }
-  } catch (err)  {
-      throw Error(err.message);
+
+    sum += parseInt(numberArray[i]);
+  }
+
+  if(negativeNumbers.length > 0) {
+    throw Error('Negative numbers not allowed: ' + negativeNumbers);
   }
 
   return sum;
