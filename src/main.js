@@ -20,7 +20,9 @@ function add(numberString) {
       negativeNumbers.push(numberArray[i]);
     }
 
-    sum += parseInt(numberArray[i]);
+    if(numberArray[i] <= 1000) {
+      sum += parseInt(numberArray[i]);
+    }
   }
 
   if(negativeNumbers.length > 0) {

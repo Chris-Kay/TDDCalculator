@@ -1,6 +1,6 @@
 var main = require('../src/main');
 
-describe("description", function () {
+describe("Basics", function () {
   it("it handles an empty string", function () {
     var emptyString = '';
     expect(main.add(emptyString)).toBe(0);
@@ -29,25 +29,37 @@ describe("Multiple deliminators", function () {
   });
 });
 
-describe("negative numbers throw errors", function () {
-  it("throws an error if a negative number is passed in with normal deliminator", function () {
+describe("Negative numbers throw errors", function () {
+  it("negative number is passed in with normal deliminator", function () {
     var number = '1,-2';
     expect(function() {
       main.add(number)
     }).toThrow(new Error('Negative numbers not allowed: -2'));
   });
 
-  it("throws an error if multiple negative numbers is passed in with normal deliminator", function () {
+  it(" multiple negative numbers is passed in with normal deliminator", function () {
     var number = '1,-2,-3';
     expect(function() {
       main.add(number)
     }).toThrow(new Error('Negative numbers not allowed: -2,-3'));
   });
 
-  it("throws an error if a negative number is passed in with custom deliminator", function () {
+  it("negative number is passed in with custom deliminator", function () {
     var number = '//;\n1;-2';
     expect(function() {
       main.add(number)
     }).toThrow(new Error('Negative numbers not allowed: -2'));
+  });
+});
+
+describe("Big numbers", function () {
+  it("ignores numbers larger than 1000", function () {
+    var number = '//;\n1001;2';
+    expect(main.add(number)).toBe(2);
+  });
+
+  it("includes the number 1000", function () {
+    var number = '//;\n1000;2';
+    expect(main.add(number)).toBe(1002);
   });
 });
